@@ -1389,3 +1389,47 @@ footer {
 button {
   width: 100%;
 }
+/* MOBILE VIEW */
+@media (max-width: 600px) {
+
+  body {
+    text-align: center;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero {
+    height: 80vh;
+    padding: 20px;
+  }
+
+  .overlay {
+    padding: 20px;
+  }
+
+  .overlay h1 {
+    font-size: 22px;
+  }
+
+  .overlay p {
+    font-size: 14px;
+  }
+
+  .buttons button {
+    width: 90%;
+    margin: 5px 0;
+  }
+
+  .products {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+}
