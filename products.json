@@ -151,4 +151,10 @@
     "colors": ["Red", "Black"],
     "inStock": false
   }
-]
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  background: #111;
+}
