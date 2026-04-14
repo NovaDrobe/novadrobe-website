@@ -1445,4 +1445,13 @@ button {
   color: white;
   text-decoration: none;
   font-size: 14px;
+.card {
+  background: #222;
+  padding: 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
