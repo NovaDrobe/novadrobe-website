@@ -1386,3 +1386,6 @@ footer {
   .product-page { padding: 100px 16px 64px; }
   .contact-page { padding: 110px 16px 64px; }
 }
+button {
+  width: 100%;
+}
