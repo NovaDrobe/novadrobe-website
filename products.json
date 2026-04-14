@@ -1,4 +1,154 @@
 [
-  {"name": "Women Bag", "price": "799"},
-  {"name": "T-Shirt", "price": "499"}
+  {
+    "id": 1,
+    "name": "Midnight Noir Tote",
+    "price": 2499,
+    "originalPrice": 2999,
+    "category": "Tote Bags",
+    "tag": "Bestseller",
+    "image": "https://images.unsplash.com/photo-1740018182436-a48ed4fcd6e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    "description": "Elegant black tote bag crafted from premium leather. Perfect for daily essentials and work.",
+    "features": [
+      "Premium genuine leather",
+      "Spacious main compartment",
+      "Inner pockets for organization",
+      "Comfortable shoulder straps",
+      "Gold-tone hardware accents"
+    ],
+    "colors": ["Black", "Tan"],
+    "inStock": true
+  },
+  {
+    "id": 2,
+    "name": "Golden Hour Sling",
+    "price": 1899,
+    "originalPrice": 2199,
+    "category": "Sling Bags",
+    "tag": "New Arrival",
+    "image": "https://images.unsplash.com/photo-1765114459508-2666016760af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    "description": "Compact sling bag with sleek design. Ideal for evenings out and casual occasions.",
+    "features": [
+      "Adjustable chain strap",
+      "Compact yet spacious",
+      "Magnetic closure",
+      "Lightweight design",
+      "Perfect for essentials"
+    ],
+    "colors": ["Gold", "Black"],
+    "inStock": true
+  },
+  {
+    "id": 3,
+    "name": "Urban Chic Shoulder",
+    "price": 2199,
+    "originalPrice": 2599,
+    "category": "Shoulder Bags",
+    "tag": "Trending",
+    "image": "https://images.unsplash.com/photo-1713425887354-274bc15dfc77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    "description": "Versatile shoulder bag that transitions seamlessly from day to night.",
+    "features": [
+      "Structured silhouette",
+      "Multiple compartments",
+      "Premium leather finish",
+      "Adjustable shoulder strap",
+      "Secure zipper closure"
+    ],
+    "colors": ["Brown", "Black", "Nude"],
+    "inStock": true
+  },
+  {
+    "id": 4,
+    "name": "Luxe Caramel Tote",
+    "price": 2799,
+    "originalPrice": 3299,
+    "category": "Tote Bags",
+    "tag": "Premium",
+    "image": "https://images.unsplash.com/photo-1723779206750-b5cf68244813?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    "description": "Sophisticated tote in rich caramel tone. A timeless piece for the modern woman.",
+    "features": [
+      "Rich caramel leather",
+      "Roomy interior",
+      "Interior zip pocket",
+      "Dual carrying handles",
+      "Minimalist design"
+    ],
+    "colors": ["Caramel", "Tan"],
+    "inStock": true
+  },
+  {
+    "id": 5,
+    "name": "Moonlight Crossbody",
+    "price": 1799,
+    "originalPrice": 2099,
+    "category": "Sling Bags",
+    "tag": "Popular",
+    "image": "https://images.unsplash.com/photo-1774259479601-69a44c70bed1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    "description": "Elegant crossbody bag with premium finish. Perfect for hands-free convenience.",
+    "features": [
+      "Crossbody strap design",
+      "Compact size",
+      "Premium clasp closure",
+      "Soft leather texture",
+      "Versatile styling"
+    ],
+    "colors": ["Black", "White"],
+    "inStock": true
+  },
+  {
+    "id": 6,
+    "name": "Slate Grey Shoulder",
+    "price": 2299,
+    "originalPrice": 2699,
+    "category": "Shoulder Bags",
+    "tag": "",
+    "image": "https://images.unsplash.com/photo-1621985191560-99df9ed0564a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    "description": "Contemporary shoulder bag in sophisticated grey. Modern elegance meets functionality.",
+    "features": [
+      "Contemporary design",
+      "Premium grey leather",
+      "Multiple pockets",
+      "Comfortable strap",
+      "Everyday versatility"
+    ],
+    "colors": ["Grey", "Black"],
+    "inStock": true
+  },
+  {
+    "id": 7,
+    "name": "Noir Elegance Sling",
+    "price": 2099,
+    "originalPrice": 2399,
+    "category": "Sling Bags",
+    "tag": "New Arrival",
+    "image": "https://images.unsplash.com/photo-1775654225406-942719a69f53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    "description": "Sleek black sling bag that adds sophistication to any outfit.",
+    "features": [
+      "Sleek black finish",
+      "Gold hardware details",
+      "Chain strap",
+      "Compact design",
+      "Perfect for occasions"
+    ],
+    "colors": ["Black"],
+    "inStock": true
+  },
+  {
+    "id": 8,
+    "name": "Crimson Statement Shoulder",
+    "price": 2599,
+    "originalPrice": 3099,
+    "category": "Shoulder Bags",
+    "tag": "Limited",
+    "image": "https://images.unsplash.com/photo-1713425886673-fb8b7abb36a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    "description": "Bold shoulder bag that makes a statement. For the confident, fashion-forward woman.",
+    "features": [
+      "Bold design",
+      "Premium craftsmanship",
+      "Spacious interior",
+      "Adjustable strap",
+      "Statement piece"
+    ],
+    "colors": ["Red", "Black"],
+    "inStock": false
+  }
 ]
