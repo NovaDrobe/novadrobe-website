@@ -1,0 +1,263 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
+import {
+  CATEGORIES,
+  SEASONS,
+  TIERS,
+  AUDIENCES,
+  formatPrice,
+  products,
+  type Category,
+  type Season,
+  type Tier,
+  type Audience,
+} from "@/data/products";
+
+export const Route = createFileRoute("/shop")({
+  head: () => ({
+    meta: [
+      { title: "Shop — Novadrobe" },
+      {
+        name: "description",
+        content:
+          "Shop Novadrobe — Monaco-inspired shirts, dresses, trousers and scarves engineered for every Indian season.",
+      },
+      { property: "og:title", content: "Shop — Novadrobe" },
+      {
+        property: "og:description",
+        content: "Monaco style. Made for Indian climate. Summer, monsoon, winter.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "/shop" }],
+  }),
+  component: Shop,
+});
+
+function Shop() {
+  const [category, setCategory] = useState<Category | "All">("All");
+  const [season, setSeason] = useState<Season | "All">("All");
+  const [tier, setTier] = useState<Tier | "All">("All");
+  const [audience, setAudience] = useState<Audience | "All">("All");
+
+  const filtered = useMemo(
+    () =>
+      products.filter(
+        (p) =>
+          (category === "All" || p.category === category) &&
+          (season === "All" || p.season === season || p.season === "All Seasons") &&
+          (tier === "All" || p.tier === tier) &&
+          (audience === "All" || p.audience === audience || p.audience === "All"),
+      ),
+    [category, season, tier, audience],
+  );
+
+  return (
+    <div className="min-h-screen bg-brand-ivory font-sans text-brand-navy">
+      {/* Top Bar */}
+      <div className="bg-brand-navy text-brand-ivory text-center text-[10px] uppercase tracking-[0.3em] py-2 px-4">
+        Free shipping across AP &amp; Telangana · 7-day exchanges
+      </div>
+
+      {/* Nav */}
+      <nav className="sticky top-0 z-50 bg-brand-ivory/85 backdrop-blur-md border-b border-brand-navy/5">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-6">
+          <div className="w-1/3 hidden md:block">
+            <ul className="flex gap-8 text-[10px] uppercase tracking-[0.2em] font-medium">
+              <li>
+                <Link to="/shop" className="text-brand-gold">Shop</Link>
+              </li>
+              <li className="hover:text-brand-gold cursor-pointer transition-colors">Curated</li>
+              <li className="hover:text-brand-gold cursor-pointer transition-colors">About</li>
+            </ul>
+          </div>
+          <div className="w-1/3 text-center">
+            <Link to="/" className="font-serif text-2xl md:text-3xl tracking-[0.25em] uppercase">
+              Novadrobe
+            </Link>
+          </div>
+          <div className="w-1/3 flex justify-end gap-6">
+            <button className="text-[10px] uppercase tracking-widest hover:text-brand-gold transition-colors">
+              Search
+            </button>
+            <button className="text-[10px] uppercase tracking-widest hover:text-brand-gold transition-colors">
+              Bag (0)
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Header */}
+      <header className="max-w-7xl mx-auto px-6 pt-16 pb-10">
+        <span className="text-[10px] uppercase tracking-[0.3em] text-brand-gold block mb-4">
+          The Atelier · Drop 01
+        </span>
+        <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] mb-4">
+          Tradition, reimagined<br />
+          <span className="italic">for every woman.</span>
+        </h1>
+        <p className="text-brand-slate max-w-xl">
+          From everyday cotton chikankari to couture bridal lehengas — sarees, kurta sets,
+          Anarkalis, and Monaco-inspired fusion pieces for young girls, women, and family
+          celebrations across Andhra Pradesh &amp; Telangana.
+        </p>
+      </header>
+
+      {/* Filters */}
+      <section className="border-y border-brand-navy/10 bg-white">
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-5">
+          <FilterGroup label="Category">
+            <Chip active={category === "All"} onClick={() => setCategory("All")}>All</Chip>
+            {CATEGORIES.map((c) => (
+              <Chip key={c} active={category === c} onClick={() => setCategory(c)}>
+                {c}
+              </Chip>
+            ))}
+          </FilterGroup>
+          <FilterGroup label="For">
+            <Chip active={audience === "All"} onClick={() => setAudience("All")}>Everyone</Chip>
+            {AUDIENCES.map((a) => (
+              <Chip key={a} active={audience === a} onClick={() => setAudience(a)}>
+                {a}
+              </Chip>
+            ))}
+          </FilterGroup>
+          <FilterGroup label="Tier">
+            <Chip active={tier === "All"} onClick={() => setTier("All")}>All</Chip>
+            {TIERS.map((t) => (
+              <Chip key={t} active={tier === t} onClick={() => setTier(t)}>
+                {t}
+              </Chip>
+            ))}
+          </FilterGroup>
+          <FilterGroup label="Season">
+            <Chip active={season === "All"} onClick={() => setSeason("All")}>All</Chip>
+            {SEASONS.map((s) => (
+              <Chip key={s} active={season === s} onClick={() => setSeason(s)}>
+                {s}
+              </Chip>
+            ))}
+          </FilterGroup>
+        </div>
+      </section>
+
+      {/* Product Grid */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <div className="flex items-end justify-between mb-10">
+          <p className="text-xs uppercase tracking-widest text-brand-slate">
+            {filtered.length} {filtered.length === 1 ? "piece" : "pieces"}
+          </p>
+          <p className="text-xs uppercase tracking-widest text-brand-slate hidden md:block">
+            Sorted by · Atelier curation
+          </p>
+        </div>
+
+        {filtered.length === 0 ? (
+          <div className="py-24 text-center text-brand-slate">
+            <p className="font-serif text-2xl italic mb-2">Nothing here yet.</p>
+            <p className="text-sm">Try a different season or category.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-14">
+            {filtered.map((p) => (
+              <article key={p.id} className="group">
+                <div className="relative overflow-hidden bg-white mb-5">
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    width={800}
+                    height={1000}
+                    loading="lazy"
+                    className="w-full aspect-[4/5] object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+                  />
+                  <span className="absolute top-3 left-3 bg-brand-ivory/90 text-brand-navy text-[9px] uppercase tracking-[0.2em] px-2 py-1">
+                    {p.season}
+                  </span>
+                  <span className="absolute top-3 right-3 bg-brand-navy/90 text-brand-ivory text-[9px] uppercase tracking-[0.2em] px-2 py-1">
+                    {p.tier}
+                  </span>
+                </div>
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <h2 className="font-serif text-xl leading-tight">{p.name}</h2>
+                    <p className="text-[10px] uppercase tracking-widest text-brand-gold mt-1">
+                      {p.color} · {p.fabric}
+                    </p>
+                  </div>
+                  <span className="text-sm font-medium whitespace-nowrap">
+                    {formatPrice(p.price)}
+                  </span>
+                </div>
+                <p className="text-xs text-brand-slate leading-relaxed mt-3">{p.description}</p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {p.sizes.map((s) => (
+                    <span
+                      key={s}
+                      className="text-[10px] uppercase tracking-widest border border-brand-navy/15 px-2.5 py-1 hover:border-brand-navy hover:bg-brand-navy hover:text-brand-ivory transition-colors cursor-pointer"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <button className="mt-5 w-full bg-brand-navy text-brand-ivory py-3 text-[10px] uppercase tracking-[0.25em] hover:bg-brand-gold transition-colors">
+                  Add to Bag
+                </button>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 border-t border-brand-navy/5 px-6 bg-brand-ivory">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="text-[10px] uppercase tracking-[0.2em] text-brand-slate">
+            &copy; 2026 Novadrobe.store
+          </div>
+          <Link to="/" className="font-serif text-2xl italic tracking-wide">
+            Novadrobe
+          </Link>
+          <div className="flex gap-6 text-[10px] uppercase tracking-[0.2em]">
+            <a href="#" className="hover:text-brand-gold transition-colors">Instagram</a>
+            <a href="#" className="hover:text-brand-gold transition-colors">TikTok</a>
+            <a href="#" className="hover:text-brand-gold transition-colors">Pinterest</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+function FilterGroup({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-4 flex-wrap">
+      <span className="text-[10px] uppercase tracking-[0.25em] text-brand-slate font-medium">
+        {label}
+      </span>
+      <div className="flex flex-wrap gap-2">{children}</div>
+    </div>
+  );
+}
+
+function Chip({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={
+        "text-[10px] uppercase tracking-[0.2em] px-4 py-2 border transition-colors " +
+        (active
+          ? "bg-brand-navy text-brand-ivory border-brand-navy"
+          : "bg-transparent text-brand-navy border-brand-navy/15 hover:border-brand-navy")
+      }
+    >
+      {children}
+    </button>
+  );
+}
