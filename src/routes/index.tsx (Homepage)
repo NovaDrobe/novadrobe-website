@@ -1,0 +1,231 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import heroImg from "@/assets/hero.jpg";
+import editCoastal from "@/assets/edit-coastal.jpg";
+import editGold from "@/assets/edit-gold.jpg";
+import editModern from "@/assets/edit-modern.jpg";
+import productShirt from "@/assets/product-shirt.jpg";
+import productDress from "@/assets/product-dress.jpg";
+import productTrousers from "@/assets/product-trousers.jpg";
+import productScarf from "@/assets/product-scarf.jpg";
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Novadrobe — Monaco Style, Deccan Soul" },
+      { name: "description", content: "Riviera-inspired luxury fashion for Gen-Z India. Curated drops from Hyderabad to Vizag." },
+      { property: "og:title", content: "Novadrobe — Monaco Style, Deccan Soul" },
+      { property: "og:description", content: "Riviera-inspired luxury fashion for Gen-Z India." },
+    ],
+  }),
+  component: Index,
+});
+
+const products = [
+  { name: "Riviera Linen Shirt", color: "Ivory", price: "₹6,800", img: productShirt },
+  { name: "Larvotto Slip Dress", color: "Champagne", price: "₹9,400", img: productDress },
+  { name: "Monte-Carlo Trouser", color: "Navy", price: "₹7,200", img: productTrousers },
+  { name: "Cap Ferrat Silk Scarf", color: "Print N°04", price: "₹3,200", img: productScarf },
+];
+
+const edits = [
+  { title: "Coastal Ivory Selection", caption: "Vizag Summer '24", img: editCoastal },
+  { title: "The Nizam Gold Edit", caption: "Hyderabad Evening Wear", img: editGold },
+  { title: "Gachibowli Modernism", caption: "Work & Leisure", img: editModern },
+];
+
+function Index() {
+  return (
+    <div className="min-h-screen bg-brand-ivory font-sans text-brand-navy">
+      {/* Announcement */}
+      <div className="bg-brand-navy text-brand-ivory text-center text-[10px] uppercase tracking-[0.3em] py-2 px-4">
+        Free shipping across AP &amp; Telangana · Drop 01 launching soon
+      </div>
+
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 bg-brand-ivory/85 backdrop-blur-md border-b border-brand-navy/5">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-6">
+          <div className="w-1/3 hidden md:block">
+            <ul className="flex gap-8 text-[10px] uppercase tracking-[0.2em] font-medium">
+              <li>
+                <Link to="/shop" className="hover:text-brand-gold transition-colors">Shop</Link>
+              </li>
+              <li className="hover:text-brand-gold cursor-pointer transition-colors">Curated</li>
+              <li className="hover:text-brand-gold cursor-pointer transition-colors">About</li>
+            </ul>
+          </div>
+          <div className="w-1/3 text-center">
+            <h1 className="font-serif text-2xl md:text-3xl tracking-[0.25em] uppercase">Novadrobe</h1>
+          </div>
+          <div className="w-1/3 flex justify-end gap-6">
+            <button className="text-[10px] uppercase tracking-widest hover:text-brand-gold transition-colors">Search</button>
+            <button className="text-[10px] uppercase tracking-widest hover:text-brand-gold transition-colors">Bag (0)</button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <section className="relative px-6 py-12 md:py-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
+            <div className="md:col-span-5 order-2 md:order-1">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-brand-gold block mb-6">The Summer Archive · 2026</span>
+              <h2 className="font-serif text-5xl md:text-7xl leading-[1.05] mb-8">
+                Monaco Style,<br />
+                <span className="italic">Deccan Soul.</span>
+              </h2>
+              <p className="text-brand-slate leading-relaxed mb-10 max-w-sm">
+                A fusion of Riviera sophistication and the vibrant pulse of Jubilee Hills. Curated luxury for the modern Indian Gen-Z woman.
+              </p>
+              <Link
+                to="/shop"
+                className="inline-block bg-brand-navy text-brand-ivory px-10 py-4 text-[10px] uppercase tracking-[0.25em] hover:bg-brand-gold transition-colors"
+              >
+                Shop the Collection
+              </Link>
+            </div>
+            <div className="md:col-span-7 order-1 md:order-2">
+              <img
+                src={heroImg}
+                alt="Editorial fashion model on a Mediterranean terrace at golden hour"
+                width={1200}
+                height={1500}
+                className="w-full aspect-[4/5] object-cover shadow-2xl"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Regional Edits */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4">
+            <div>
+              <h3 className="font-serif text-4xl md:text-5xl mb-2">The Regional Edits</h3>
+              <p className="text-brand-slate text-xs uppercase tracking-widest">From Vizag Coast to Banjara Hills</p>
+            </div>
+            <a href="#" className="text-xs uppercase tracking-widest border-b border-brand-navy pb-1 hover:text-brand-gold transition-colors">
+              View All Stories
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+            {edits.map((e) => (
+              <div key={e.title} className="group cursor-pointer">
+                <div className="overflow-hidden mb-6">
+                  <img
+                    src={e.img}
+                    alt={e.title}
+                    width={800}
+                    height={1000}
+                    loading="lazy"
+                    className="w-full aspect-[4/5] object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+                  />
+                </div>
+                <h4 className="font-serif text-2xl mb-1">{e.title}</h4>
+                <p className="text-[10px] uppercase tracking-widest text-brand-gold">{e.caption}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="py-24 bg-brand-ivory">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4">
+            <div>
+              <h3 className="font-serif text-4xl md:text-5xl mb-2">The Atelier</h3>
+              <p className="text-brand-slate text-xs uppercase tracking-widest">First Drop · Now Live</p>
+            </div>
+            <Link to="/shop" className="text-xs uppercase tracking-widest border-b border-brand-navy pb-1 hover:text-brand-gold transition-colors">
+              Shop All
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-12">
+            {products.map((p) => (
+              <div key={p.name} className="group cursor-pointer">
+                <div className="overflow-hidden bg-white mb-4">
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    width={800}
+                    height={1000}
+                    loading="lazy"
+                    className="w-full aspect-[4/5] object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+                  />
+                </div>
+                <h4 className="font-serif text-lg leading-tight">{p.name}</h4>
+                <p className="text-[10px] uppercase tracking-widest text-brand-gold mt-1">{p.color}</p>
+                <p className="text-sm mt-2 font-medium">{p.price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Lifestyle Banner */}
+      <section className="bg-brand-navy py-24 text-brand-ivory">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h3 className="font-serif text-4xl md:text-5xl mb-10 leading-tight italic">
+            "Fashion is not just what you wear,<br />it's where you're going."
+          </h3>
+          <div className="flex flex-wrap justify-center gap-12 md:gap-20">
+            <div className="text-center">
+              <span className="block font-serif text-3xl mb-1 text-brand-gold">02</span>
+              <span className="text-[9px] uppercase tracking-[0.25em] opacity-60">Cities · Hyderabad &amp; Vizag</span>
+            </div>
+            <div className="text-center">
+              <span className="block font-serif text-3xl mb-1 text-brand-gold">Monaco</span>
+              <span className="text-[9px] uppercase tracking-[0.25em] opacity-60">Inspired Design</span>
+            </div>
+            <div className="text-center">
+              <span className="block font-serif text-3xl mb-1 text-brand-gold">100%</span>
+              <span className="text-[9px] uppercase tracking-[0.25em] opacity-60">Curated Ethics</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section className="py-24 bg-white">
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-brand-gold block mb-4">Join the Circle</span>
+          <h3 className="font-serif text-3xl md:text-4xl mb-6 leading-tight">First access to limited drops.</h3>
+          <p className="text-brand-slate text-sm mb-10">
+            Be the first to receive private invitations, lookbook releases, and city events across AP and Telangana.
+          </p>
+          <form className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="flex-1 bg-transparent border-b border-brand-navy/20 py-3 px-1 text-sm focus:outline-none focus:border-brand-gold transition-colors"
+            />
+            <button
+              type="submit"
+              className="bg-brand-navy text-brand-ivory px-8 py-3 text-[10px] uppercase tracking-[0.25em] hover:bg-brand-gold transition-colors"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 border-t border-brand-navy/5 px-6 bg-brand-ivory">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="text-[10px] uppercase tracking-[0.2em] text-brand-slate">
+            &copy; 2026 Novadrobe.store
+          </div>
+          <div className="font-serif text-2xl italic tracking-wide">Novadrobe</div>
+          <div className="flex gap-6 text-[10px] uppercase tracking-[0.2em]">
+            <a href="#" className="hover:text-brand-gold transition-colors">Instagram</a>
+            <a href="#" className="hover:text-brand-gold transition-colors">TikTok</a>
+            <a href="#" className="hover:text-brand-gold transition-colors">Pinterest</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
